@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生活筆記本</title>
+
+    <style>
+        /* 定義全局樣式，包括字體和背景色 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        /* 頁面頂部的標題區域樣式 */
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        /* 導覽列的樣式，包括橫向排列和間距設定 */
+        .nav {
+            display: flex;
+            justify-content: flex-end;
+            background-color: #333;
+            padding: 10px;
+        }
+        /* 導覽列中連結的樣式，包含默認和懸停效果 */
+        .nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            padding: 8px 16px;
+        }
+        .nav a:hover {
+            background-color: #575757;
+            border-radius: 5px;
+        }
+        /* 主內容容器樣式，設置寬度和陰影效果 */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        /* 標題文字顏色設置 */
+        h2 {
+            color: #4CAF50;
+        }
+        /* 功能列表的樣式，包括左側條狀顏色標記 */
+        .features {
+            list-style-type: none;
+            padding: 0;
+        }
+        .features li {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-left: 4px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <!-- 頁面標題部分，顯示歡迎訊息 -->
+    <div class="header">
+       <!-- <img src="/springboot.jpg" alt="Spring Boot Logo" /> -->
+        <h1>歡迎來到生活筆記本</h1>
+        <p>管理你的個人與公司財務的最佳工具</p>
+    </div>
+    <!-- 導覽列，提供帳號相關操作的連結 -->
+    <div class="nav">
+        <a href="/register-free-account">註冊免費帳號</a>
+        <a href="/register-paid-account">註冊收費帳號</a>
+        <a href="/login">登入</a>
+    </div>
+    <!-- 主內容區域，介紹產品的主要功能和特性 -->
+    <div class="container">
+        <h2>產品簡介</h2>
+        <p>生活筆記本是一個簡單易用的記帳工具，適合個人和企業使用。</p>
+        <ul class="features">
+            <li><strong>免費帳號：</strong> 個人用戶可輕鬆管理日常開支與收入。</li>
+            <li><strong>收費帳號：</strong> 提供企業級功能，包含多用戶權限設定。</li>
+        </ul>
+        <p>立即創建帳號，開始管理你的財務生活吧！</p>
+    </div>
+</body>
+</html>
