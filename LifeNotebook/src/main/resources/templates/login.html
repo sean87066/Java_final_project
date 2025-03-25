@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Login & Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            width: 700px;
+            height: 380px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        .left, .right {
+            flex: 1;
+            padding: 30px;
+        }
+
+        .left {
+            border-right: 1px solid #555;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: normal;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            background-color: #e57373;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .signup-btn {
+            background-color: #bdbdbd;
+        }
+
+        .signup-btn:hover {
+            background-color: #757575;
+        }
+
+		.checkbox {
+		    display: flex;
+		    align-items: center;
+		    margin: 10px 0;
+		}
+
+		.checkbox input[type="checkbox"] {
+		    margin-right: 1px;
+		}
+
+		.btn {
+		    display: inline-block;
+		    padding: 10px 20px;
+		    border: none;
+		    background-color: #4CAF50;
+		    color: #fff;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    font-size: 14px;
+		    margin-top: 10px;
+		}
+
+		.btn:hover {
+		    background-color: #1d953f;
+		}
+
+        .small-text {
+            font-size: 12px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+
+	<br>
+    <div class="container">
+		<div class="left">
+		    <h2>登入</h2>
+		    
+		     <!-- Place for messages: error, alert etc ... -->
+                        <div class="form-group">
+                            <div class="col-xs-15">
+                                <div>
+                                    <!-- Check for login error -->
+                                    <div th:if="${param.error}">
+                                        <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                            Invalid username and password.
+                                        </div>
+                                    </div>
+                                    <!-- Check for logout -->
+                                    <div th:if="${param.logout}">
+                                        <div class="alert alert-success col-xs-offset-1 col-xs-10">
+                                            You have been logged out.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+		    
+		    <form method="post" th:action="@{/login}">
+		        <input type="text" name="username" placeholder="Username" required>
+		        <input type="password" name="password" placeholder="Password" required>
+		        
+		        <!-- Remember me
+		        <div class="checkbox">
+		            <input type="checkbox" id="remember">
+		        </div>
+		         -->
+		         
+		        <button type="submit" class="btn">Login</button>
+		    </form>
+		</div>
+
+        <div class="right">
+            <h2>註冊免費帳號</h2>
+            <span style="color: #4CAF50; font-size: 14px;">Free Account</span>
+          
+            <form method="get" th:action="@{/register-free-account}">
+                <button type="submit" class="btn signup-btn">Signup</button>
+            </form>
+          <br>
+          <h2>註冊收費帳號</h2>
+            <span style="color: #4CAF50; font-size: 14px;">Premium Account</span>
+          
+            <form method="get" th:action="@{/register-paid-account}">
+                <button type="submit" class="btn signup-btn">Signup</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>帳本管理系統</title>
+
+    <style>
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        .head_content {
+            margin-bottom: 20px;
+        }
+
+        .search {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+	<div class="container mb-3">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+                <a href="/logout" class="btn btn-danger btn-sm m-2">Logout</a>
+                <a href="/change-password" class="btn btn-warning btn-sm m-2">更換密碼</a>
+            </div>
+        </div>
+    </div>
+	
+	<div class="container mb-3">
+        <!-- 帳本管理系統 -->
+        <div class="row">
+            <div class="col-12">
+                <h1>帳本管理系統</h1>
+            </div>
+        </div>
+        <!-- 資料筆數 -->
+        <div class="row">
+            <div class="col-12">
+                <h2>
+                    目前資料筆數: <span th:text="${dataCount}">0</span>
+                </h2>
+            </div>
+        </div>
+        <!-- 搜尋日期 -->
+        <form class="row" action="/search" method="get">
+            <div class="col-5">
+                <label for="startDate">開始日期:</label>
+                <input class="form-control" type="date" id="startDate" name="startDate" required>
+            </div>
+            <div class="col-5">
+                <label for="endDate">結束日期:</label>
+                <input class="form-control" type="date" id="endDate" name="endDate" required>
+            </div>
+            <div class="col-2 d-flex justify-content-center align-items-end">
+                <button type="submit" class="btn btn-secondary">Search</button>
+            </div>
+        </form>
+    </div>
+	
+	<hr>
+
+    <div class="container">
+        <a th:href="@{accounting/addData}" class="btn btn-success btn-sm mb-3">新增收入/支出</a>
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>日期</th>
+                    <th>分類</th>
+                    <th>收入/支出</th>
+                    <th>項目</th>
+                    <th>金額</th>
+                    <th>備註</th>
+                    <th>編輯/刪除</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tempAccounting: ${Accounting}">
+                    <td th:text="${tempAccounting.date}" />
+                    <td th:text="${tempAccounting.category}" />
+                    <td th:text="${tempAccounting.balance}" />
+                    <td th:text="${tempAccounting.name}" />
+                    <td th:text="${tempAccounting.amount}" />
+                    <td th:text="${tempAccounting.note}" />
+                    <td>
+                        <a th:href="@{/edit/{id}(id=${tempAccounting.id})}" class="btn btn-primary btn-sm">編輯</a>
+                        <a th:href="@{/delete/{id}(id=${tempAccounting.id})}" class="btn btn-danger btn-sm" button
+                            type="submit" onclick="return confirm('確認刪除?')">刪除</a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+</body>
+
+</html>

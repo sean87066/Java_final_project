@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>編輯項目</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <h3>編輯項目</h3>
+        <hr>
+
+        <form th:action="@{/edit/{id}(id=${tempAccounting.id})}" th:object="${tempAccounting}" method="POST">
+           <input type="hidden" th:field="*{id}">
+            <label for="category">日期</label>
+   <input type="date" th:value="${tempAccounting.date}" name="date"
+          class="form-control mb-4 w-25" 
+          required>
+   
+   
+   <label for="category">分類</label>
+      <select th:field="*{category}" class="form-control mb-4 w-25" required>
+        <option value="飲食">飲食</option>
+        <option value="治裝">治裝</option>
+        <option value="住房">住房</option>
+          <option value="交通">交通</option>
+          <option value="教育">教育</option>
+          <option value="娛樂">娛樂</option>
+          <option value="稅捐">稅捐</option>
+          <option value="薪資收入">薪資收入</option>
+          <option value="投資獲利">投資獲利</option>
+          <option value="資產出售">資產出售</option>
+          <option value="其他">其他</option>
+      </select>
+         
+          <label for="balance">收入/支出</label>
+            <select th:field="*{balance}" class="form-control mb-4 w-25" required>
+        <option value="收入">收入</option>
+        <option value="支出">支出</option>
+             </select>
+          <label for="name">名稱</label>
+           <input  type="text" th:field="*{name}"
+                   class="form-control mb-4 w-25" placeholder="名稱" required>
+          <label for="amount">價格</label>
+           <input  type="number" th:field="*{amount}"
+                   class="form-control mb-4 w-25" placeholder="輸入數字">
+          <label for="note">備註</label>
+           <input  type="text" th:field="*{note}"
+                   class="form-control mb-4 w-25" placeholder="輸入備註">
+
+            <button type="submit" class="btn btn-success btn-sm mb-3">Change</button>
+
+        </form>
+
+        
+        <a th:href="@{/accounting}" class="btn btn-info col-2">回到帳本</a>
+  <hr>
+    </div>
+
+</body>
+</html>

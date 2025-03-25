@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Free Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 400px;
+            background-color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-weight: normal;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: #1d953f;
+        }
+
+        p {
+            font-size: 12px;
+            color: #ccc;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>註冊免費帳號</h2>
+        <form th:action="@{/register-free-account}" th:object="${registrationDto}" method="post">
+
+            <!-- Place for messages: error, alert etc ... -->
+            <div class="form-group">
+                <div class="col-xs-15">
+                    <div>
+                        <!-- Check for login error -->
+                        <div th:if="${param.registrationError}">
+                            <div class="alert alert-danger col-xs-offset-1 col-xs-10">
+                                <span th:text="${param.registrationError}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="text" name="username" placeholder="Username" required>
+            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="text-danger"></div>
+			<div th:if="${registrationError}" class="alert alert-danger">
+    			<span th:text="${registrationError}"></span>
+			</div>
+
+            <input type="password" name="password" placeholder="Password" required>
+            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></div>
+
+
+            <input type="email" name="email" placeholder="Email" required>
+            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+
+
+            <button type="submit" class="btn">Signup</button>
+        </form>
+        <p>Already hava an account? <a href="/login">Login here</a></p>
+    </div>
+
+</body>
+
+</html>
